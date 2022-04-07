@@ -1,0 +1,9 @@
+# Config for CommandPermissionMessage by cosmicnebula200
+
+# you can use '{COMMAND}' as a placeholder which will be replaced with the commands name
+permission-message: "&l&d[CommandPermissionMessage] &b=> You do not have permission to use {COMMAND}"
+
+# The plugins which will not have their permission message changed, useful for the commands which have a fancy no permission message already
+excluded-commands:
+  - 'op'
+  - 'deop'

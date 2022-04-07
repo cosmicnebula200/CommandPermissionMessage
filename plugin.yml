@@ -1,0 +1,5 @@
+name: CommandPermissionMessage
+api: 4.0.0
+author: cosmicnebula200
+main: cosmicnebula200\CommandPermissionMessage\Main
+version: 1.0.0
