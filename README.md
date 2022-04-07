@@ -5,9 +5,10 @@ Have you ever got bored by the red message the server sends when you execute any
 Well meet CustomPermissionMessage a plugin which allows you to edit it and make it flashy ✨✨
 
 **Default No Permission Message**
-<a href="https://github.com/cosmicnebula200/CommandPermissionMessage"><img src="https://media.discordapp.net/attachments/837701868649709572/961432672503218236/unknown.png"></img></a><br>
+- <a href="https://github.com/cosmicnebula200/CommandPermissionMessage"><img src="https://media.discordapp.net/attachments/837701868649709572/961432672503218236/unknown.png"></img></a><br>
+
 **Customized No Permission Message**
-<a href="https://github.com/cosmicnebula200/CommandPermissionMessage"><img src="https://media.discordapp.net/attachments/837701868649709572/961432721006153748/unknown.png"></img></a><br>
+- <a href="https://github.com/cosmicnebula200/CommandPermissionMessage"><img src="https://media.discordapp.net/attachments/837701868649709572/961432721006153748/unknown.png"></img></a><br>
 
 # Features
  
