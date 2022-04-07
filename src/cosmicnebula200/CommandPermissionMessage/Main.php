@@ -9,9 +9,6 @@ use pocketmine\utils\TextFormat;
 class Main extends PluginBase
 {
 
-    /** @var bool */
-    private bool $enabled = false;
-
     public function onEnable(): void
     {
         $this->saveDefaultConfig();
