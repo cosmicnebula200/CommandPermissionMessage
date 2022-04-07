@@ -2,12 +2,11 @@
 
 namespace cosmicnebula200\CommandPermissionMessage;
 
-use pocketmine\event\Listener;
-use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\plugin\PluginBase;
+use pocketmine\scheduler\ClosureTask;
 use pocketmine\utils\TextFormat;
 
-class Main extends PluginBase implements Listener
+class Main extends PluginBase
 {
 
     /** @var bool */
@@ -16,26 +15,27 @@ class Main extends PluginBase implements Listener
     public function onEnable(): void
     {
         $this->saveDefaultConfig();
-        $this->getServer()->getPluginManager()->registerEvents($this, $this);
+        $this->getScheduler()->scheduleTask(new ClosureTask(function (): void {
+            $this->registerMessages();
+        }));
     }
 
     /**
-     * @param PlayerJoinEvent $event
-     *
-     * registers on PlayerJoinEvent as not all commands are registered while the plugin is enabled
+     * @return void
      */
-    public function onJoin(PlayerJoinEvent $event): void
+    public function registerMessages(): void
     {
-        if (!$this->enabled)
+        $excludedCommands = array_fill_keys($this->getConfig()->get('excluded-commands'), true);
+        $permissionMessage = $this->getConfig()->get('permission-message');
+        foreach($this->getServer()->getCommandMap()->getCommands() as $command)
         {
-            $excludedCommands = $this->getConfig()->get('excluded-commands');
-            foreach($this->getServer()->getCommandMap()->getCommands() as $command)
-            {
-                if (in_array($command->getName(), $excludedCommands) or array_merge($excludedCommands, $command->getAliases()) !== array_diff($excludedCommands, $command->getAliases()))
-                    continue;
-                $command->setPermissionMessage(TextFormat::colorize(str_replace("{COMMAND}", $command->getName(), $this->getConfig()->get('permission-message'))));
+            if (isset($excludedCommands[$command->getName()]))
+                continue;
+            foreach($command->getAliases() as $alias){
+                if(isset($excludedCommands[$alias]))
+                    continue 2;
             }
-            $this->enabled = true;
+            $command->setPermissionMessage(TextFormat::colorize(str_replace("{COMMAND}", $command->getName(), $permissionMessage)));
         }
     }
 
